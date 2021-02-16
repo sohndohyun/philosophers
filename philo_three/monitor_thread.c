@@ -22,8 +22,7 @@ int		check_die(t_philo *philo)
 {
 	int i;
 
-	if (philo->state != STATE_EAT &&
-		(int)(get_timestamp() - philo->last_eat) >= g_time_to_die)
+	if ((int)(get_timestamp() - philo->last_eat) >= g_time_to_die)
 	{
 		print_log(philo->no, LOG_DIE);
 		sem_post(g_end);
