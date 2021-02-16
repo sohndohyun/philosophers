@@ -21,8 +21,7 @@ int		is_philo_death(void)
 	i = 0;
 	while (i < g_philo_count)
 	{
-		if (g_philos[i].state != STATE_EAT &&
-			(int)(get_timestamp() - g_philos[i].last_eat) >= g_time_to_die)
+		if ((int)(get_timestamp() - g_philos[i].last_eat) >= g_time_to_die)
 			return (i);
 		i++;
 	}
