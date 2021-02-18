@@ -6,7 +6,7 @@
 /*   By: dsohn <dsohn@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 21:04:05 by dsohn             #+#    #+#             */
-/*   Updated: 2021/02/15 15:04:59 by dsohn            ###   ########.fr       */
+/*   Updated: 2021/02/19 00:36:58 by dsohn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,12 @@ void	philo(void)
 	while (++i < g_philo_count)
 	{
 		pthread_create(&tids[i], NULL, philo_thread, &g_philos[i]);
-		pthread_detach(tids[i]);
 	}
 	pthread_create(&monitor_tid, NULL, monitor_thread, NULL);
 	pthread_join(monitor_tid, NULL);
+	i = -1;
+	while (++i < g_philo_count)
+		pthread_join(tids[i], NULL);
 	destroy_fork();
 	free(g_philos);
 	free(tids);
